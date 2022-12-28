@@ -1,10 +1,10 @@
 /* Make it work by adding proper lifetime annotations */
-struct ImportantExcerpt {
-    part: &str,
+struct ImportantExcerpt<'a> {
+    part: &'a str,
 }
 
-impl ImportantExcerpt {
-    fn level(&'a self) -> i32 {
+impl<'a> ImportantExcerpt<'a> {
+    fn level(self) -> i32 {
         3
     }
 }

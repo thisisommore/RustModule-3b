@@ -5,9 +5,8 @@ fn main() {
 
     let consume = || {
         println!("`movable`: {:?}", movable);
-        take(movable);
+        take(&movable);
     };
-
     consume();
     consume();
 }

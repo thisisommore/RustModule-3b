@@ -3,20 +3,20 @@
 // A type `Borrowed` which houses a reference to an
 // `i32`. The reference to `i32` must outlive `Borrowed`.
 #[derive(Debug)]
-struct Borrowed(&i32);
+struct Borrowed<'a>(&'a i32);
 
 // Similarly, both references here must outlive this structure.
 #[derive(Debug)]
-struct NamedBorrowed {
-    x: &i32,
-    y: &i32,
+struct NamedBorrowed<'a, 'b> {
+    x: &'a i32,
+    y: &'b i32,
 }
 
 // An enum which is either an `i32` or a reference to one.
 #[derive(Debug)]
-enum Either {
+enum Either<'a> {
     Num(i32),
-    Ref(&i32),
+    Ref(&'a i32),
 }
 
 fn main() {
@@ -26,7 +26,7 @@ fn main() {
     let single = Borrowed(&x);
     let double = NamedBorrowed { x: &x, y: &y };
     let reference = Either::Ref(&x);
-    let number    = Either::Num(y);
+    let number = Either::Num(y);
 
     println!("x is borrowed in {:?}", single);
     println!("x and y are borrowed in {:?}", double);

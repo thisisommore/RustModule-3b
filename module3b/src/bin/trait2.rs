@@ -1,4 +1,3 @@
-
 // Fill in the two impl blocks to make the code work.
 // DON'T modify the code in `main`.
 trait Hello {
@@ -11,9 +10,18 @@ trait Hello {
 
 struct Student {}
 impl Hello for Student {
+    fn say_something(&self) -> String {
+        String::from("I'm a good student")
+    }
 }
 struct Teacher {}
 impl Hello for Teacher {
+    fn say_hi(&self) -> String {
+        String::from("Hi, I'm your new teacher")
+    }
+    fn say_something(&self) -> String {
+        String::from("I'm not a bad teacher")
+    }
 }
 
 fn main() {

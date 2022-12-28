@@ -8,9 +8,9 @@
 // Notes:
 // * Use `#[error("description")]` on the enum variants
 // * Use `#[from] ErrorType` to convert the existing errors into a `ProgramError`
-
-use thiserror::Error;
-
+use std::error::Error;
+use std::io;
+// use thiserror::Error;
 enum ProgramError {}
 
 #[derive(Debug, Error)]

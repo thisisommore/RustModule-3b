@@ -1,4 +1,3 @@
-
 // `Centimeters`, a tuple struct that can be compared
 #[derive(PartialEq, PartialOrd)]
 struct Centimeters(f64);
@@ -17,14 +16,24 @@ impl Inches {
 
 // ADD some attributes to make the code work!
 // DON'T modify other code!
+#[derive(Debug, PartialEq, PartialOrd)]
 struct Seconds(i32);
 
 fn main() {
     let _one_second = Seconds(1);
+    let _two_second = Seconds(2);
 
     println!("One second looks like: {:?}", _one_second);
     let _this_is_true = (_one_second == _one_second);
     let _this_is_true = (_one_second > _one_second);
+    println!(
+        "One second is same to two second {}",
+        _one_second == _two_second
+    );
+    println!(
+        "Two second is greater than one second {}",
+        _two_second > _one_second
+    );
 
     let foot = Inches(12);
 
@@ -32,12 +41,11 @@ fn main() {
 
     let meter = Centimeters(100.0);
 
-    let cmp =
-        if foot.to_centimeters() < meter {
-            "smaller"
-        } else {
-            "bigger"
-        };
+    let cmp = if foot.to_centimeters() < meter {
+        "smaller"
+    } else {
+        "bigger"
+    };
 
     println!("One foot is {} than one meter.", cmp);
 }

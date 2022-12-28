@@ -1,6 +1,8 @@
-fn invalid_output() -> &str { 
+fn invalid_output<'a>() -> &'a str {
     "foo"
 }
 
 // fix the error and print invalid_output()
-fn main() {}
+fn main() {
+    println!("Ye lo print {}", invalid_output());
+}

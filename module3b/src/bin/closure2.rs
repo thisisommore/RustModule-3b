@@ -1,4 +1,4 @@
-/* Make it work 
+/* Make it work
 - Dont use `_reborrow` and `_count_reborrowed`
 - Dont modify `assert_eq`
 */
@@ -11,15 +11,19 @@ fn main() {
     };
 
     inc();
-
-
-    let _reborrow = &count; 
-
     inc();
 
+    let mut dec = || {
+        count -= 1;
+        println!("`count`: {}", count);
+    };
+    dec();
+    dec();
+
+    let _reborrow = &count;
     // The closure no longer needs to borrow `&mut count`. Therefore, it is
     // possible to reborrow without an error
-    let _count_reborrowed = &mut count; 
+    let _count_reborrowed = &mut count;
 
     assert_eq!(count, 0);
 }
