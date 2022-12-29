@@ -4,8 +4,10 @@
 // a reference to invalid data to be returned.
 
 /* Fix the error in three ways  */
-fn invalid_output<'a>() -> &'a String {
-    &String::from("foo")
+fn invalid_output<'a>() -> &'a str {
+    "foo"
 }
 
-fn main() {}
+fn main() {
+    println!("wass up = {}", invalid_output())
+}

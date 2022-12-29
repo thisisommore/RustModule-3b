@@ -8,10 +8,16 @@
 // Notes:
 // * Use `#[error("description")]` on the enum variants
 // * Use `#[from] ErrorType` to convert the existing errors into a `ProgramError`
-use std::error::Error;
+// use std::error::Error;
 use std::io;
-// use thiserror::Error;
-enum ProgramError {}
+use thiserror::Error;
+#[derive(Debug, Error)]
+enum ProgramError {
+    #[error("error is very max")]
+    Max(#[from] MenuError),
+    #[error("error is very min")]
+    Min(#[from] MathError),
+}
 
 #[derive(Debug, Error)]
 enum MenuError {
@@ -52,6 +58,12 @@ fn run(step: i32) -> Result<(), ProgramError> {
 }
 
 fn main() {
+    match run(1) {
+        Err(e) => {
+            println!("Errors are noice {}", e.to_string())
+        }
+        _ => {}
+    }
     println!("{:?}", run(1));
     println!("{:?}", run(2));
 }
